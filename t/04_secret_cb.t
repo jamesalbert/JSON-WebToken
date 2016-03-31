@@ -1,7 +1,6 @@
 use v6;
 use Test;
 use JSON::WebToken;
-use Data::Dump;
 
 plan 2;
 
