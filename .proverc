@@ -1,0 +1,6 @@
+--exec "perl6 -Ilib,t"
+--timer
+--merge
+--trap
+--color
+-w
