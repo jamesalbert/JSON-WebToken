@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jamesalbert/JSON-WebToken.svg?branch=master)](https://travis-ci.org/jamesalbert/JSON-WebToken)
+
 NAME
 ====
 
@@ -150,7 +152,7 @@ When given signing algorithm is not included in acceptable_algorithms.
 AUTHOR
 ======
 
-jamesalbert AKA jimmyjam5000ME (Mellenium Edition) <lt>jalbert1@uci.edu<gt>
+jamesalbert AKA jimmyjam5000ME (Millennium Edition) <lt>jalbert1@uci.edu<gt>
 
 Authors of Perl5 JSON::WebToken:
 
