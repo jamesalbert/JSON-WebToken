@@ -5,6 +5,13 @@ NAME
 
 JSON::WebToken - JSON Web Token (JWT) implementation for Perl6
 
+INSTALL
+=======
+
+    panda update
+    panda install JSON::WebToken
+
+
 SYNOPSIS
 ========
 
