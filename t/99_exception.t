@@ -5,20 +5,18 @@ use JSON::WebToken::Constants;
 
 plan 15;
 
-note 'without claims and secret';
 subtest {
     {
       encode_jwt;
       CATCH {
         default {
-          like $_.message, rx/"Usage: encode"/;
+          like $_.message, rx/'Error: $claims'/;
           is $_.payload{'code'}, ERROR_JWT_INVALID_PARAMETER;
         }
       }
     };
 };
 
-note 'without secret';
 subtest {
     {
       my $claims = { foo => 'bar' };
@@ -32,10 +30,10 @@ subtest {
     };
 };
 
-note 'claims is not HASH';
 subtest {
     {
-      encode_jwt [], 'secret';
+      my $claims = [];
+      encode_jwt $claims, 'secret';
       CATCH {
         default {
           like $_.message, rx/"Usage: encode"/;
@@ -45,7 +43,7 @@ subtest {
     };
 };
 
-note 'not supported algorithm';
+
 subtest {
     {
       my $claims = { foo => 'bar' };
@@ -59,7 +57,7 @@ subtest {
     };
 };
 
-note 'without jwt';
+
 subtest {
     {
       decode_jwt;
@@ -72,7 +70,7 @@ subtest {
     };
 };
 
-note 'too many segments';
+
 subtest {
     {
       decode_jwt 'x.y.z.foo.bar', 'secret';
@@ -85,7 +83,7 @@ subtest {
     };
 };
 
-note 'not enough segments';
+
 subtest {
     {
       decode_jwt 'x', 'secret';
@@ -98,7 +96,7 @@ subtest {
     };
 };
 
-note 'invalid segments';
+
 subtest {
     {
       decode_jwt 'x.y.z', 'secret';
@@ -111,7 +109,7 @@ subtest {
     };
 };
 
-note 'invalid signature';
+
 subtest {
     my $claims = { foo => 'bar' };
     my $jwt = encode_jwt $claims, 'secret';
@@ -126,7 +124,7 @@ subtest {
     };
 };
 
-note 'unacceptable algorithm';
+
 subtest {
     my $claims = { foo => 'bar' };
     my $jwt = encode_jwt $claims, '', 'none';
@@ -141,7 +139,7 @@ subtest {
     };
 };
 
-note 'deprecated: accept_algorithm_none';
+
 subtest {
     my $claims = { foo => 'bar' };
     my $jwt = encode_jwt $claims, '', 'none';
@@ -156,7 +154,7 @@ subtest {
     };
 };
 
-note 'unacceptable algorithm';
+
 subtest {
     my $claims = { foo => 'bar' };
     my $jwt = encode_jwt $claims, 'secret', 'HS256';
@@ -175,7 +173,7 @@ subtest {
 
 };
 
-note 'signature must be empty';
+
 subtest {
     my $claims = { foo => 'bar' };
     my $jwt = encode_jwt $claims, '', 'none';
@@ -190,7 +188,7 @@ subtest {
     };
 };
 
-note 'is_verify true, but without secret';
+
 subtest {
     my $claims = { foo => 'bar' };
     my $jwt = encode_jwt $claims, 'secret';
@@ -205,7 +203,7 @@ subtest {
     };
 };
 
-note 'is_verify false';
+
 subtest {
     my $claims = { foo => 'bar' };
     my $jwt = encode_jwt $claims, 'secret';

@@ -16,12 +16,10 @@ sub test_encode_decode is export {
 
   my $test = sub {
     my $jwt = encode_jwt $claims, $secret, $algorithm, $header_fields;
-    note "jwt: $jwt";
     return decode_jwt $jwt, $public_key, $algorithm;
   };
   # subtest $desc => sub {
   subtest {
-    note $desc;
     if (!$expects_exception) {
         my $got = $test();
         is-deeply $got, $claims;

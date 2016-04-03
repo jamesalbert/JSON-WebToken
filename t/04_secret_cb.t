@@ -17,8 +17,7 @@ sub test_secret_cb {
         my ($header, $claims) = @_;
         $secret_map{$claims{'iss'}};
     };
-
-    note $desc;
+    say $claims;
     subtest {
         my $jwt  = encode_jwt $claims, $secret;
         my $data = decode_jwt $jwt, $secret_cb;

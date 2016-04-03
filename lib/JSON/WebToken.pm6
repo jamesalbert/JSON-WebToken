@@ -43,7 +43,12 @@ sub encode is export {
   $algorithm     ||= 'HS256';
   $extra_headers ||= {};
 
-
+  unless ($claims.defined) {
+    throw-error({
+      code    => ERROR_JWT_INVALID_PARAMETER,
+      message => 'Error: $claims must be specified'
+    })
+  }
   unless ($claims ~~ Hash) {
     throw-error({
       code    => ERROR_JWT_INVALID_PARAMETER,
