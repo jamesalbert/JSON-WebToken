@@ -6,7 +6,7 @@ plan 0;
 =begin notImplemented
 use Test::Requires 'Crypt::OpenSSL::RSA';
 
-use lib '.'
+use lib 't/lib';
 use t::Util;
 
 my $rsa = Crypt::OpenSSL::RSA->generate_key(1024);
