@@ -1,6 +1,6 @@
 use v6;
 use Test;
-use lib '.';
+use lib 't/lib';
 use t::Util;
 use JSON::WebToken;
 
